@@ -98,7 +98,7 @@ function Test-TargetResource
                 return $false
             }
         } else {
-            Write-Verbose "Rule exists but is expected not."
+            Write-Verbose "Rule doesn't exist and is expected not."
             return $true
         }
     } else {
