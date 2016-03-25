@@ -1,0 +1,11 @@
+
+[ClassVersion("1.0.0.0"), FriendlyName("xMongoUser")]
+class xMongoUser : OMI_BaseResource
+{
+    [Key] String UserName;
+    [Required, EmbeddedInstance("MSFT_Credential")] String UserPassword;
+    [Required] String Collection;
+    [Required] String MongoPath;
+    [Write, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
+};
+
