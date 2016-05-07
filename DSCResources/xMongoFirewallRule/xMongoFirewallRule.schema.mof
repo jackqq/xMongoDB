@@ -1,9 +1,0 @@
-
-[ClassVersion("1.0.0.0"), FriendlyName("xMongoFirewallRule")]
-class xMongoFirewallRule : OMI_BaseResource
-{
-    [Key] String Name;
-    [Write] UInt16 Port;
-    [Write, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
-};
-
