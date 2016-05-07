@@ -1,13 +1,11 @@
-$this_script_path = Split-Path -Parent $MyInvocation.MyCommand.Path
-
-$resource_name = "xMongoUser"
-$resource_path = Join-Path -Path $((Get-Item $this_script_path).Parent.FullName) -ChildPath "DSCResources\${resource_name}"
+$resource_name = ($MyInvocation.MyCommand.Name -split '\.')[0]
+$resource_path = $PSScriptRoot + "\..\..\DSCResources\${resource_name}"
 
 if (! (Get-Module xDSCResourceDesigner)) {
     Import-Module -Name xDSCResourceDesigner
 }
 
-Describe "${resource_name}, the DSC resource" {
+Describe -Tag 'DSCResource' "${resource_name}, the DSC resource" {
     It 'Passes Test-xDscResource' {
         Test-xDscResource $resource_path | Should Be $true
     }
@@ -23,7 +21,7 @@ if (Get-Module $resource_name) {
 
 Import-Module "${resource_path}\${resource_name}.psm1"
 
-Describe "${resource_name}, Integration Tests" {
+Describe -Tag 'Integration' "${resource_name}, Integration Tests" {
     $test_username = "TestUser"
     $test_password = New-Object -TypeName System.Management.Automation.PSCredential `
             ("N/A", (ConvertTo-SecureString 'TestPassword' -AsPlainText -Force))

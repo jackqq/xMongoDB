@@ -1,11 +1,5 @@
-$this_script_path = Split-Path -Parent $MyInvocation.MyCommand.Path
-
 $resource_name = "xMongoUser"
-$resource_path = Join-Path -Path $((Get-Item $this_script_path).Parent.FullName) -ChildPath "DSCResources\${resource_name}"
-
-if (! (Get-Module xDSCResourceDesigner)) {
-    Import-Module -Name xDSCResourceDesigner
-}
+$resource_path = $PSScriptRoot + "\..\..\DSCResources\${resource_name}"
 
 if (Get-Module $resource_name) {
     Remove-Module $resource_name
